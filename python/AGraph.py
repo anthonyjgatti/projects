@@ -3,7 +3,7 @@ from collections import defaultdict, deque
 from pprint import pprint
 
 class AGraph(object):
-	'''An advanced graph analytics class.'''
+	'''A basic graph implementation. Can be directed or undirected.'''
 
 
 	def __init__(self, connections, directed = False):
@@ -30,7 +30,10 @@ class AGraph(object):
 
 
 	def remove_node(self, node):
-		'''Remove the node after removing its associated connections.'''
+		'''
+		Remove the node after removing its associated connections.
+		Inspiration: http://stackoverflow.com/questions/19472530/representing-graphs-data-structure-in-python
+		'''
 		
 		for v, cnxs in self._graph.iteritems():
 			try:
@@ -84,14 +87,13 @@ class AGraph(object):
 		return ''
 
 
+if __name__ == '__main__':
+	
 
-my_connections = [('A', 'B'), ('B', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'A'), ('E', 'F'), ('F', 'C'), ('H', None)]
+	# Testing examples.
+	my_connections = [('A', 'B'), ('B', 'C'), ('B', 'D'), ('C', 'D'), ('D', 'A'), ('E', 'F'), ('F', 'C'), ('H', None)]
+	the_graph = AGraph(my_connections, directed = True)
 
-the_graph = AGraph(my_connections, directed = True)
-print the_graph
-
-the_graph.find_path('A','F')
-
-
-
+	print the_graph
+	the_graph.find_path('A','F')
 
